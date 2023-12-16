@@ -31,3 +31,9 @@ class ProductTest(TestCase):
 
         self.assertEqual(product.latest_min_price, 96)
         self.assertEqual(product.latest_max_price, 97)
+    
+    def test_upload_xlsx(self):
+        # Create a XLSX file
+        # Send a POST Request imitating the form
+        # Validate that all products were created, counting them
+        raise NotImplementedError
