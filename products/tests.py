@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Product, ProductBrand, ProductCategory
+from .models import Product, ProductBrand, ProductCategory, ProductPrice
 
 
 class ProductTest(TestCase):
@@ -13,3 +13,21 @@ class ProductTest(TestCase):
         self.assertEqual(product.name, "Product1")
         self.assertEqual(product.brand.name, "Brand1")
         self.assertEqual(product.category.name, "Category1")
+    
+    def test_latest_max_and_min_price(self):
+        product = Product.objects.get(name="Product1")
+
+        price1 = ProductPrice.objects.create(product=product, location="Disco", price=99)
+        price2 = ProductPrice.objects.create(product=product, location="Ta-Ta", price=100)
+        product.prices.add(price1, price2)
+
+        price3 = ProductPrice.objects.create(product=product, location="Disco", price=99)
+        price4 = ProductPrice.objects.create(product=product, location="Ta-Ta", price=98)
+        product.prices.add(price3, price4)
+
+        price5 = ProductPrice.objects.create(product=product, location="Disco", price=96)
+        price6 = ProductPrice.objects.create(product=product, location="Ta-Ta", price=97)
+        product.prices.add(price5, price6)
+
+        self.assertEqual(product.latest_min_price, 96)
+        self.assertEqual(product.latest_max_price, 97)
