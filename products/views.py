@@ -5,9 +5,11 @@ from .models import Product, ProductCategory, ProductBrand  # Import your Produc
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-def product_list(request):
-    products = Product.objects.all()
-    return render(request, 'product_list.html', {'products': products})
+from django.views.generic import ListView, DetailView
+
+# def product_list(request):
+#     products = Product.objects.all()
+#     return render(request, 'product_list.html', {'products': products})
 
 def upload_products(request):
     if request.method == 'POST':
@@ -53,3 +55,15 @@ def upload_products(request):
         return HttpResponseRedirect(reverse('product_list'))  # Adjust the URL name as needed
 
     return render(request, 'upload_form.html')
+
+
+class ProductListView(ListView):
+    model = Product
+    template_name = 'products_list.html'
+    context_object_name = 'products'
+    paginate_by = 20  # Set the number of products per page
+
+class ProductDetailsView(DetailView):
+    model = Product
+    template_name = 'product_details.html'
+    context_object_name = 'product'

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ product.generic_name }} ({{ product.brand.name }})</h2>
+  
+  <p>Description: {{ product.description }}</p>
+  <p>Category: {{ product.category.name }}</p>
+  <p>Latest Minimum Price: {{ product.get_min_latest_price }}</p>
+
+  <h3>Prices:</h3>
+  <ul>
+    {% for price in product.get_latest_prices %}
+      <li>{{ price.product__location__name }}: {{ price.latest_price }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
