@@ -10,3 +10,7 @@ six==1.16.0
 sqlparse==0.4.4
 typing_extensions==4.9.0
 tzdata==2023.3
+greenlet==3.0.1
+playwright==1.40.0
+pyee==11.0.1
+typing_extensions==4.9.0

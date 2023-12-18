@@ -24,6 +24,7 @@ class Location(models.Model):
     name = models.CharField(max_length=200)
     base_url = models.CharField(max_length=200, blank=True)
     get_product_url = models.CharField(max_length=200, blank=True)
+    script_name = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         return self.name
