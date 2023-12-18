@@ -15,10 +15,18 @@
         <ul>
             {% for product in products %}
                 <li>
+                    <strong>Code:</strong> {{ product.code }}<br>
                     <strong>Category:</strong> {{ product.category }}<br>
                     <strong>Brand:</strong> {{ product.brand }}<br>
-                    <strong>Name:</strong> {{ product.name }}<br>
-                    <strong>Description:</strong> {{ product.description }}
+                    <strong>Name:</strong> {{ product.generic_name }}<br>
+                    <strong>Description:</strong> {{ product.description }}<br>
+                    <strong>Prices:</strong>
+                    <ul>
+                        <li>TODO: Price 1</li>
+                        <li>TODO: Price 2</li>
+                        <li>TODO: Price 3</li>
+                    </ul>
+
                 </li>
                 <br>
             {% endfor %}
